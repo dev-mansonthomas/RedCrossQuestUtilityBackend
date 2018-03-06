@@ -25,7 +25,7 @@ public class NamedDonationRowMapper extends RowMapperHelper implements RowMapper
     this.tableWriter.addValue(getValue(rs.getString    ("ref_recu_fiscal"),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("first_name"     ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("last_name"      ),ValueType.STRING  ));
-    this.tableWriter.addValue(getValue(rs.getTimestamp ("date"           ),ValueType.DATETIME));
+    this.tableWriter.addValue(getValue(rs.getDate      ("date"           ),ValueType.DATE    ));
     this.tableWriter.addValue(getValue(rs.getString    ("address"        ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("postal_code"    ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("city"           ),ValueType.STRING  ));
@@ -67,7 +67,7 @@ public class NamedDonationRowMapper extends RowMapperHelper implements RowMapper
     tableMetadataBuilder.addColumn(new ColumnMetadata("ref_recu_fiscal", ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("first_name"     , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("last_name"      , ValueType.STRING   ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("date"           , ValueType.DATETIME ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("date"           , ValueType.DATE      ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("address"        , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("postal_code"    , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("city"           , ValueType.STRING   ));

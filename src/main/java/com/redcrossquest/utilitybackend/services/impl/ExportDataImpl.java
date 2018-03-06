@@ -138,8 +138,7 @@ public class ExportDataImpl implements ExportDataService
     "active                    ,\n" +
     "qr_code_printed           ,\n" +
     "referent_volunteer         \n" +
-    "FROM queteur               \n" +
-      "WHERE id = 419" ;
+    "FROM queteur               \n" ;
 
   public void exportQueteur(final TableWriter tableWriter)
   {
