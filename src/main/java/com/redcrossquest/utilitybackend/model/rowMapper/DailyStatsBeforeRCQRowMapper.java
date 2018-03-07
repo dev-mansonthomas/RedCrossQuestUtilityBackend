@@ -22,7 +22,7 @@ public class DailyStatsBeforeRCQRowMapper extends RowMapperHelper implements Row
   {
     this.tableWriter.addValue(getValue(rs.getInt       ("id"     ), ValueType.INT      ));
     this.tableWriter.addValue(getValue(rs.getInt       ("ul_id"  ), ValueType.INT      ));
-    this.tableWriter.addValue(getValue(rs.getTimestamp ("date"   ), ValueType.DATETIME ));
+    this.tableWriter.addValue(getValue(rs.getDate      ("date"   ), ValueType.DATE     ));
     this.tableWriter.addValue(getValue(rs.getBigDecimal("amount" ), ValueType.DECIMAL  ));
 
 
@@ -39,7 +39,7 @@ public class DailyStatsBeforeRCQRowMapper extends RowMapperHelper implements Row
 
     tableMetadataBuilder.addColumn(new ColumnMetadata("id"    , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("ul_id" , ValueType.INT     ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("year"  , ValueType.DATETIME));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("year"  , ValueType.DATE    ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("amount", ValueType.DECIMAL ));
 
     return tableMetadataBuilder.build();
