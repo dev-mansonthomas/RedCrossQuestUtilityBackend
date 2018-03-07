@@ -17,7 +17,8 @@ public class RowMapperHelper
       return o;
     }
 
-    return valueType.getDefaultValue();
+
+    return valueType.getInvalidValue();
   }
   public static String getString(String string)
   {
