@@ -54,7 +54,8 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     this.tableWriter.addValue(getValue(rs.getBoolean   ("deleted"                     ),ValueType.BOOL    ));
     this.tableWriter.addValue(getValue(rs.getBigDecimal("don_creditcard"              ),ValueType.DECIMAL ));
     this.tableWriter.addValue(getValue(rs.getBigDecimal("don_cheque"                  ),ValueType.DECIMAL ));
-
+    this.tableWriter.addValue(getValue(rs.getString    ("coins_money_bag_id"          ),ValueType.STRING  ));
+    this.tableWriter.addValue(getValue(rs.getString    ("bills_money_bag_id"          ),ValueType.STRING  ));
 
 
     return null;
@@ -102,6 +103,9 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     tableMetadataBuilder.addColumn(new ColumnMetadata("deleted"                     , ValueType.BOOL    ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("don_creditcard"              , ValueType.DECIMAL ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("don_cheque"                  , ValueType.DECIMAL ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("coins_money_bag_id"          , ValueType.STRING  ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("bills_money_bag_id"          , ValueType.STRING  ));
+
 
     return tableMetadataBuilder.build();
   }

@@ -67,7 +67,9 @@ public class ExportDataImpl implements ExportDataService
     "notes_update                    ,\n" +
     "deleted                         ,\n" +
     "don_creditcard                  ,\n" +
-    "don_cheque                       \n" +
+    "don_cheque                      ,\n" +
+    "coins_money_bag_id              ,\n" +
+    "bills_money_bag_id               \n" +
     "FROM tronc_queteur               \n" ;
 
   public void exportTroncQueteur(final TableWriter tableWriter)
@@ -137,7 +139,9 @@ public class ExportDataImpl implements ExportDataService
     "man                       ,\n" +
     "active                    ,\n" +
     "qr_code_printed           ,\n" +
-    "referent_volunteer         \n" +
+    "referent_volunteer        ,\n" +
+    "anonymization_token       ,\n" +
+    "anonymization_date         \n" +
     "FROM queteur               \n" ;
 
   public void exportQueteur(final TableWriter tableWriter)
@@ -212,7 +216,17 @@ public class ExportDataImpl implements ExportDataService
     "id                ,\n" +
     "ul_id             ,\n" +
     "year              ,\n" +
-    "amount             \n" +
+    "amount            ,\n" +
+    "day_1_percentage  ,\n" +
+    "day_2_percentage  ,\n" +
+    "day_3_percentage  ,\n" +
+    "day_4_percentage  ,\n" +
+    "day_5_percentage  ,\n" +
+    "day_6_percentage  ,\n" +
+    "day_7_percentage  ,\n" +
+    "day_8_percentage  ,\n" +
+    "day_9_percentage  \n" +
+
     "FROM yearly_goal   \n" ;
 
   public void exportYearlyGoal(final TableWriter tableWriter)
@@ -249,37 +263,44 @@ public class ExportDataImpl implements ExportDataService
   }
 
   public static final String QUERY_FOR_GET_NAMED_DONATION=
-    "SELECT    \n" +
-    "id               ,\n" +
-    "ul_id            ,\n" +
-    "ref_recu_fiscal  ,\n" +
-    "first_name       ,\n" +
-    "last_name        ,\n" +
-    "date             ,\n" +
-    "don_cheque       ,\n" +
-    "address          ,\n" +
-    "postal_code      ,\n" +
-    "city             ,\n" +
-    "phone            ,\n" +
-    "euro500          ,\n" +
-    "euro200          ,\n" +
-    "euro100          ,\n" +
-    "euro50           ,\n" +
-    "euro20           ,\n" +
-    "euro10           ,\n" +
-    "euro5            ,\n" +
-    "euro2            ,\n" +
-    "euro1            ,\n" +
-    "cents50          ,\n" +
-    "cents20          ,\n" +
-    "cents10          ,\n" +
-    "cents5           ,\n" +
-    "cents2           ,\n" +
-    "cent1            ,\n" +
-    "notes            ,\n" +
-    "type             ,\n" +
-    "don_creditcard    \n" +
-    "FROM named_donation \n" ;
+    "SELECT            \n" +
+    "id                  ,\n" +
+    "ul_id               ,\n" +
+    "ref_recu_fiscal     ,\n" +
+    "first_name          ,\n" +
+    "last_name           ,\n" +
+    "date                ,\n" +
+    "don_cheque          ,\n" +
+    "address             ,\n" +
+    "postal_code         ,\n" +
+    "city                ,\n" +
+    "phone               ,\n" +
+    "email               ,\n" +
+    "euro500             ,\n" +
+    "euro200             ,\n" +
+    "euro100             ,\n" +
+    "euro50              ,\n" +
+    "euro20              ,\n" +
+    "euro10              ,\n" +
+    "euro5               ,\n" +
+    "euro2               ,\n" +
+    "euro1               ,\n" +
+    "cents50             ,\n" +
+    "cents20             ,\n" +
+    "cents10             ,\n" +
+    "cents5              ,\n" +
+    "cents2              ,\n" +
+    "cent1               ,\n" +
+    "notes               ,\n" +
+    "type                ,\n" +
+    "forme               ,\n" +
+    "don_creditcard      ,\n" +
+    "deleted             ,\n" +
+    "coins_money_bag_id  ,\n" +
+    "bills_money_bag_id   \n" +
+
+
+      "FROM named_donation \n" ;
 
   public void exportNamedDonation(final TableWriter tableWriter)
   {
