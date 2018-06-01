@@ -56,7 +56,10 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     this.tableWriter.addValue(getValue(rs.getBigDecimal("don_cheque"                  ),ValueType.DECIMAL ));
     this.tableWriter.addValue(getValue(rs.getString    ("coins_money_bag_id"          ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("bills_money_bag_id"          ),ValueType.STRING  ));
-
+    this.tableWriter.addValue(getValue(rs.getBigDecimal("don_cb_sans_contact_amount"  ),ValueType.DECIMAL ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("don_cb_sans_contact_number"  ),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("don_cb_total_number"         ),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("don_cheque_number"           ),ValueType.INT     ));
 
     return null;
   }
@@ -105,6 +108,10 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     tableMetadataBuilder.addColumn(new ColumnMetadata("don_cheque"                  , ValueType.DECIMAL ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("coins_money_bag_id"          , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("bills_money_bag_id"          , ValueType.STRING  ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("don_cb_sans_contact_amount"  , ValueType.DECIMAL ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("don_cb_sans_contact_number"  , ValueType.INT     ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("don_cb_total_number"         , ValueType.INT     ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("don_cheque_number"           , ValueType.INT     ));
 
 
     return tableMetadataBuilder.build();

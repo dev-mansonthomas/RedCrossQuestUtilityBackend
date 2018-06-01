@@ -3,6 +3,7 @@ package com.redcrossquest.utilitybackend.model.rowMapper;
 import com.redcrossquest.utilitybackend.UtilitybackendApplication;
 import com.spotfire.sbdf.ValueType;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
 
@@ -16,7 +17,6 @@ public class RowMapperHelper
     {
       return o;
     }
-
 
     return valueType.getInvalidValue();
   }

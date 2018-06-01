@@ -19,12 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/sbdf-generator/1.0")
 public class SpotfireSBDFGenerator implements InitializingBean
 {
   private static final Logger LOGGER = LoggerFactory.getLogger(SpotfireSBDFGenerator.class);
+
+  private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSSS");
+
 
   @Autowired
   private ExportDataService exportDataService;
@@ -77,6 +82,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer = null;
     try
     {
+      LOGGER.info("Starting exporting spotfire_access SDBF File");
       outputStream  = new FileOutputStream(spotfireAccessOutputFile);
       writer        = new BinaryWriter(outputStream);
 
@@ -90,6 +96,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportSpotfireAccess(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting spotfire_access SDBF File");
     }
     catch(Exception e)
     {
@@ -107,18 +114,18 @@ public class SpotfireSBDFGenerator implements InitializingBean
 
 
 
-
-  @RequestMapping(value = "/tronc_queteur", method = RequestMethod.GET, produces = "application/json")
-  public String generateTroncQueteur()
+  @RequestMapping(value = "/tronc", method = RequestMethod.GET, produces = "application/json")
+  public String generateTronc()
   {
     long         startDate    = System.currentTimeMillis();
-    StringBuffer response     = new StringBuffer("{[");
+    StringBuffer response     = new StringBuffer();
+
+
     OutputStream outputStream = null;
     BinaryWriter writer       = null;
-
-
     try
     {
+      LOGGER.info("Starting exporting tronc SDBF File");
       outputStream  = new FileOutputStream(troncOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -132,6 +139,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportTronc(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting tronc SDBF File");
     }
     catch(Exception e)
     {
@@ -143,10 +151,22 @@ public class SpotfireSBDFGenerator implements InitializingBean
       closeResources(outputStream, writer);
     }
 
-    startDate = buildResponse(startDate, "tronc", troncOutputFile, response);
+    buildResponse(startDate, "tronc", troncOutputFile, response);
+    return response.toString();
+  }
 
+  @RequestMapping(value = "/queteur", method = RequestMethod.GET, produces = "application/json")
+  public String generateQueteur()
+  {
+    long         startDate    = System.currentTimeMillis();
+    StringBuffer response     = new StringBuffer();
+
+
+    OutputStream outputStream = null;
+    BinaryWriter writer       = null;
     try
     {
+      LOGGER.info("Starting exporting queteur SDBF File");
       outputStream  = new FileOutputStream(queteurOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -160,6 +180,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportQueteur(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting queteur SDBF File");
     }
     catch(Exception e)
     {
@@ -170,9 +191,22 @@ public class SpotfireSBDFGenerator implements InitializingBean
     {
       closeResources(outputStream, writer);
     }
-    startDate = buildResponse(startDate, "queteur", queteurOutputFile, response);
+    buildResponse(startDate, "queteur", queteurOutputFile, response);
+    return response.toString();
+  }
+
+  @RequestMapping(value = "/point_quete", method = RequestMethod.GET, produces = "application/json")
+  public String generatePointQuete()
+  {
+    long         startDate    = System.currentTimeMillis();
+    StringBuffer response     = new StringBuffer();
+
+    OutputStream outputStream = null;
+    BinaryWriter writer       = null;
+
     try
     {
+      LOGGER.info("Starting exporting point_quete SDBF File");
       outputStream  = new FileOutputStream(pointQueteOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -186,6 +220,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportPointQuete(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting point_quete SDBF File");
     }
     catch(Exception e)
     {
@@ -197,10 +232,21 @@ public class SpotfireSBDFGenerator implements InitializingBean
     {
       closeResources(outputStream, writer);
     }
-    startDate = buildResponse(startDate, "pointQuete", pointQueteOutputFile, response);
+    buildResponse(startDate, "pointQuete", pointQueteOutputFile, response);
+    return response.toString();
+  }
+
+  @RequestMapping(value = "/tronc_queteur", method = RequestMethod.GET, produces = "application/json")
+  public String generateTroncQueteur()
+  {
+    long         startDate    = System.currentTimeMillis();
+    StringBuffer response     = new StringBuffer();
+    OutputStream outputStream = null;
+    BinaryWriter writer       = null;
 
     try
     {
+      LOGGER.info("Starting exporting tronc_queteur SDBF File");
       outputStream  = new FileOutputStream(troncQueteurOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -214,6 +260,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportTroncQueteur(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting tronc_queteur SDBF File");
     }
     catch(Exception e)
     {
@@ -228,7 +275,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
 
     buildResponse(startDate, "troncQueteur", troncQueteurOutputFile, response);
 
-    return response.append("]}").toString();
+    return response.toString();
   }
 
   @RequestMapping(value = "/named_donation", method = RequestMethod.GET, produces = "application/json")
@@ -242,6 +289,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
+      LOGGER.info("Starting exporting named_donation SDBF File");
       outputStream  = new FileOutputStream  (namedDonationOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -255,6 +303,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportNamedDonation(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting named_donation SDBF File");
     }
     catch(Exception e)
     {
@@ -281,6 +330,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
+      LOGGER.info("Starting exporting yearly_goal SDBF File");
       outputStream  = new FileOutputStream  (yearlyGoalOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -294,6 +344,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportYearlyGoal(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting yearly_goal SDBF File");
     }
     catch(Exception e)
     {
@@ -321,6 +372,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
+      LOGGER.info("Starting exporting daily_stats_before_rcq SDBF File");
       outputStream  = new FileOutputStream  (dailyStatsBeforeRCQOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -334,6 +386,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportDailyStatsBeforeRCQ(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting daily_stats_before_rcq SDBF File");
     }
     catch(Exception e)
     {
@@ -361,6 +414,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
+      LOGGER.info("Starting exporting ul SDBF File");
       outputStream  = new FileOutputStream  (ulOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -374,6 +428,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportUL(tableWriter);
 
       tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting ul SDBF File");
     }
     catch(Exception e)
     {
@@ -423,7 +478,9 @@ public class SpotfireSBDFGenerator implements InitializingBean
     response.append(size);
     response.append(", 'executionTimeInMs':");
     response.append(nbOfMilliSeconds);
-    response.append("}");
+    response.append(", 'exportDate':'");
+    response.append(formatter.format(new Date()));
+    response.append("'}");
 
     return System.currentTimeMillis();
   }
@@ -438,6 +495,8 @@ public class SpotfireSBDFGenerator implements InitializingBean
     response.append(outputFile);
     response.append(", 'executionTimeInMs':");
     response.append(nbOfMilliSeconds);
+    response.append("', 'exportDate':'");
+    response.append(formatter.format(new Date()));
     response.append("', 'message':'");
     response.append(e.getMessage());
     response.append("'}");

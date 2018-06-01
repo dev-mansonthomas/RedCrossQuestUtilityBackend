@@ -69,7 +69,11 @@ public class ExportDataImpl implements ExportDataService
     "don_creditcard                  ,\n" +
     "don_cheque                      ,\n" +
     "coins_money_bag_id              ,\n" +
-    "bills_money_bag_id               \n" +
+    "bills_money_bag_id              ,\n" +
+    "don_cb_sans_contact_amount      ,\n" +
+    "don_cb_sans_contact_number      ,\n" +
+    "don_cb_total_number             ,\n" +
+    "don_cheque_number                \n" +
     "FROM tronc_queteur               \n" ;
 
   public void exportTroncQueteur(final TableWriter tableWriter)
@@ -141,7 +145,8 @@ public class ExportDataImpl implements ExportDataService
     "qr_code_printed           ,\n" +
     "referent_volunteer        ,\n" +
     "anonymization_token       ,\n" +
-    "anonymization_date         \n" +
+    "anonymization_date        ,\n" +
+    "anonymization_user_id      \n"+
     "FROM queteur               \n" ;
 
   public void exportQueteur(final TableWriter tableWriter)
@@ -269,7 +274,7 @@ public class ExportDataImpl implements ExportDataService
     "ref_recu_fiscal     ,\n" +
     "first_name          ,\n" +
     "last_name           ,\n" +
-    "date                ,\n" +
+    "donation_date       ,\n" +
     "don_cheque          ,\n" +
     "address             ,\n" +
     "postal_code         ,\n" +
@@ -297,7 +302,9 @@ public class ExportDataImpl implements ExportDataService
     "don_creditcard      ,\n" +
     "deleted             ,\n" +
     "coins_money_bag_id  ,\n" +
-    "bills_money_bag_id   \n" +
+    "bills_money_bag_id  ,\n" +
+    "last_update         ,\n" +
+    "last_update_user_id  \n"  +
 
 
       "FROM named_donation \n" ;
