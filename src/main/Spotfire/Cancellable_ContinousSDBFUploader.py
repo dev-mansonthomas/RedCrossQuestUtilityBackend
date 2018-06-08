@@ -10,23 +10,18 @@ ps = Application.GetService[ProgressService]()
 folder = Document.Properties["SpotfireServerFolder"]
 # "http://localhost:8090/sbdf-generator/1.0/"
 rcqBackendURI = Document.Properties["SDBFGeneratorURL"]
-# "C:/RedCrossQuest/SpotfireUpdate-test.html"
-outputFilePath = Document.Properties["outputFilePath"]
-
+# Sleep time in seconds (decimal accepted)
 sleep_time = Document.Properties["SleepTime"]
-
-lm = Application.GetService(LibraryManager)
-table = Document.ActiveDataTableReference
 
 ps.CurrentProgress.ExecuteSubtask("folder        =" + folder)
 ps.CurrentProgress.ExecuteSubtask("rcqBackendURI =" + rcqBackendURI)
-ps.CurrentProgress.ExecuteSubtask("outputFilePath=" + outputFilePath)
 ps.CurrentProgress.ExecuteSubtask("sleep_time    =" + str(sleep_time))
 ps.CurrentProgress.ExecuteSubtask("Configuration Retrieved")
 
 
 def upload_one_file(data_table):
     file_name = data_table.Name
+    lm = Application.GetService(LibraryManager)
     ps.CurrentProgress.ExecuteSubtask(file_name + " - start")
 
     web_request = HttpWebRequest.Create(rcqBackendURI+file_name)
@@ -44,27 +39,52 @@ def upload_one_file(data_table):
     try:
         (found, item) = lm.TryGetItem(folder+file_name, LibraryItemType.SbdfDataFile, LibraryItemRetrievalOption.IncludeProperties)
         if found:
-            table.ExportDataToLibrary(item, file_name)
+            data_table.ExportDataToLibrary(item, file_name)
             ps.CurrentProgress.ExecuteSubtask(file_name+" - exported (ow)")
         else:
             (found2, item2) = lm.TryGetItem(folder, LibraryItemType.Folder, LibraryItemRetrievalOption.IncludeProperties)
             if found2:
-                table.ExportDataToLibrary(item2, file_name)
+                data_table.ExportDataToLibrary(item2, file_name)
                 ps.CurrentProgress.ExecuteSubtask(file_name+" - exported (1st)")
     except Exception as e:
-        ps.CurrentProgress.ExecuteSubtask("Exception Occured:" + str(e))
+        ps.CurrentProgress.ExecuteSubtask("Exception occurred on " + file_name + " - " + str(e))
 
 
+#
+# Spotfire Access : updated every 15seconds in production. The Analysis has only spotfire_access loaded.
+# Other tables (spotfire_access not loaded)
+#  * Sleep time set to 60 seconds.
+#  * Every iteration, tronc_queteur, queteur, named_donation are updated
+#  * Every 5 iteration (5minutes):  the rest is updated  (i % 5 == 0)
+#
+#
 def execute():
     try:
+        i = 0
         while True:
             for one_table in Document.Data.Tables:
+
                 ps.CurrentProgress.CheckCancel()
-                upload_one_file(one_table)
+                table_name = one_table.Name
+
+                if table_name == "spotfire_access" \
+                        or table_name == "tronc_queteur" \
+                        or table_name == "queteur" \
+                        or table_name == "named_donation" \
+                        or i % 5 == 0:
+                    upload_one_file(one_table)
+
                 ps.CurrentProgress.CheckCancel()
 
+            i += 1
+
             ps.CurrentProgress.ExecuteSubtask("All tables refreshed, sleeping " + str(sleep_time) + "s")
-            time.sleep(sleep_time)
+            j = 0
+            while j < sleep_time:
+                time.sleep(1)
+                ps.CurrentProgress.CheckCancel()
+                j += 1
+
             ps.CurrentProgress.ExecuteSubtask("waking up after " + str(sleep_time) + "s")
 
     except BaseException as e:  # user canceled
