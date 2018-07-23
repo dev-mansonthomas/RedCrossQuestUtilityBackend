@@ -477,14 +477,14 @@ public class SpotfireSBDFGenerator implements InitializingBean
     catch(Exception e)
     {
       LOGGER.error("Error while generating queteur_mailing_status SDBF File",  e);
-      startDate = buildErrorResponse(startDate, "queteur_mailing_status", ulOutputFile, e, response);
+      startDate = buildErrorResponse(startDate, "queteur_mailing_status", queteurMailingStatusOutputFile, e, response);
     }
     finally
     {
       closeResources(outputStream, writer);
     }
 
-    buildResponse(startDate, "queteur_mailing_status", ulOutputFile, response);
+    buildResponse(startDate, "queteur_mailing_status", queteurMailingStatusOutputFile, response);
     return response.toString();
   }
 

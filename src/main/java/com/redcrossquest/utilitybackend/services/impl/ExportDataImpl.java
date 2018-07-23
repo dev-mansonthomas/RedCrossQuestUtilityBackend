@@ -348,7 +348,7 @@ public class ExportDataImpl implements ExportDataService
     jdbcTemplate.query(QUERY_FOR_GET_QUETEUR_MAILING_STATUS,
                        os    ,
                        types ,
-                       new NamedDonationRowMapper(tableWriter));
+                       new QueteurMailingStatusRowMapper(tableWriter));
   }
 
 }
