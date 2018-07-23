@@ -146,7 +146,9 @@ public class ExportDataImpl implements ExportDataService
     "referent_volunteer        ,\n" +
     "anonymization_token       ,\n" +
     "anonymization_date        ,\n" +
-    "anonymization_user_id      \n"+
+    "anonymization_user_id     ,\n" +
+    "spotfire_access_token     ,\n" +
+    "mailing_preference         \n" +
     "FROM queteur               \n" ;
 
   public void exportQueteur(final TableWriter tableWriter)
@@ -188,20 +190,23 @@ public class ExportDataImpl implements ExportDataService
 
   public static final String QUERY_FOR_GET_UL =
     "SELECT                     \n" +
-    "id                        ,\n" +
-    "name                      ,\n" +
-    "phone                     ,\n" +
-    "latitude                  ,\n" +
-    "longitude                 ,\n" +
-    "address                   ,\n" +
-    "postal_code               ,\n" +
-    "city                      ,\n" +
-    "external_id               ,\n" +
-    "email                     ,\n" +
-    "id_structure_rattachement ,\n" +
-    "date_demarrage_activite   ,\n" +
-    "date_demarrage_rcq         \n" +
-    "FROM ul                    \n" ;
+    "u.id                        ,\n" +
+    "u.name                      ,\n" +
+    "u.phone                     ,\n" +
+    "u.latitude                  ,\n" +
+    "u.longitude                 ,\n" +
+    "u.address                   ,\n" +
+    "u.postal_code               ,\n" +
+    "u.city                      ,\n" +
+    "u.external_id               ,\n" +
+    "u.email                     ,\n" +
+    "u.id_structure_rattachement ,\n" +
+    "u.date_demarrage_activite   ,\n" +
+    "u.date_demarrage_rcq        ,\n" +
+    "us.thanks_mail_benevole     ,\n" +
+    "us.thanks_mail_benevole1j    \n" +
+    "FROM ul u, ul_settings us    \n" +
+    "WHERE us.ul_id = u.id        \n" ;
 
   public void exportUL(final TableWriter tableWriter)
   {
@@ -322,5 +327,28 @@ public class ExportDataImpl implements ExportDataService
   }
 
 
+
+
+  public static final String QUERY_FOR_GET_QUETEUR_MAILING_STATUS=
+      "SELECT `id`                    ,\n" +
+      "       `queteur_id`            ,\n" +
+      "       `year`                  ,\n" +
+      "       `status_code`           ,\n" +
+      "       `spotfire_opened`       ,\n" +
+      "       `email_send_date`       ,\n" +
+      "       `spotfire_open_date`     \n" +
+      "FROM   `queteur_mailing_status` \n" ;
+
+  public void exportQueteurMailingStatus(final TableWriter tableWriter)
+  {
+    Object [] os    = {};
+    int    [] types = {};
+
+
+    jdbcTemplate.query(QUERY_FOR_GET_QUETEUR_MAILING_STATUS,
+                       os    ,
+                       types ,
+                       new NamedDonationRowMapper(tableWriter));
+  }
 
 }

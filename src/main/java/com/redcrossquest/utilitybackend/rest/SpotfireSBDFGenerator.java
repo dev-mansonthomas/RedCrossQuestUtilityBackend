@@ -64,6 +64,8 @@ public class SpotfireSBDFGenerator implements InitializingBean
   @Value("${utilitybackend.files.folder}/${utilitybackend.files.yearly_goal}")
   private String yearlyGoalOutputFile;
 
+  @Value("${utilitybackend.files.folder}/${utilitybackend.files.queteur_mailing_status}")
+  private String queteurMailingStatusOutputFile;
 
 
 
@@ -444,6 +446,47 @@ public class SpotfireSBDFGenerator implements InitializingBean
     return response.toString();
   }
 
+
+  @RequestMapping(value = "/queteur_mailing_status", method = RequestMethod.GET, produces = "application/json")
+  public String generateQueteurMailingStatus()
+  {
+    long         startDate    = System.currentTimeMillis();
+    StringBuffer response     = new StringBuffer();
+
+
+    OutputStream outputStream = null;
+    BinaryWriter writer       = null;
+    try
+    {
+      LOGGER.info("Starting exporting queteur_mailing_status SDBF File");
+      outputStream  = new FileOutputStream  (queteurMailingStatusOutputFile);
+      writer        = new BinaryWriter      (outputStream);
+
+      FileHeader.writeCurrentVersion(writer);
+
+      TableMetadata tableMetadata = QueteurMailingStatusRowMapper.generateTableMetadata(version);
+      tableMetadata.write(writer);
+
+      TableWriter tableWriter = new TableWriter(writer, tableMetadata);
+
+      this.exportDataService.exportQueteurMailingStatus(tableWriter);
+
+      tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting queteur_mailing_status SDBF File");
+    }
+    catch(Exception e)
+    {
+      LOGGER.error("Error while generating queteur_mailing_status SDBF File",  e);
+      startDate = buildErrorResponse(startDate, "queteur_mailing_status", ulOutputFile, e, response);
+    }
+    finally
+    {
+      closeResources(outputStream, writer);
+    }
+
+    buildResponse(startDate, "queteur_mailing_status", ulOutputFile, response);
+    return response.toString();
+  }
 
   private static void closeResources(OutputStream outputStream, BinaryWriter writer)
   {

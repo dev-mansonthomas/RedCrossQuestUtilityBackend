@@ -39,6 +39,8 @@ public class QueteurRowMapper extends RowMapperHelper implements RowMapper<NullD
     this.tableWriter.addValue(getValue(rs.getString    ("anonymization_token"  ), ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getDate      ("anonymization_date"   ), ValueType.DATE    ));
     this.tableWriter.addValue(getValue(rs.getInt       ("anonymization_user_id"), ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getString    ("spotfire_access_token"), ValueType.STRING  ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("mailing_preference"   ), ValueType.INT     ));
 
 
     return null;
@@ -71,6 +73,8 @@ public class QueteurRowMapper extends RowMapperHelper implements RowMapper<NullD
     tableMetadataBuilder.addColumn(new ColumnMetadata("anonymization_token"  , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("anonymization_date"   , ValueType.DATETIME));
     tableMetadataBuilder.addColumn(new ColumnMetadata("anonymization_user_id", ValueType.INT     ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("spotfire_access_token", ValueType.STRING  ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("mailing_preference"   , ValueType.INT     ));
 
     return tableMetadataBuilder.build();
   }
