@@ -35,6 +35,7 @@ public class ExportDataImpl implements ExportDataService
   public static final String QUERY_FOR_GET_TRONC_QUETEUR =
     "SELECT                           \n" +
     "id                              ,\n" +
+    "ul_id                           ,\n" +
     "queteur_id                      ,\n" +
     "point_quete_id                  ,\n" +
     "tronc_id                        ,\n" +
@@ -70,8 +71,6 @@ public class ExportDataImpl implements ExportDataService
     "don_cheque                      ,\n" +
     "coins_money_bag_id              ,\n" +
     "bills_money_bag_id              ,\n" +
-    "don_cb_sans_contact_amount      ,\n" +
-    "don_cb_sans_contact_number      ,\n" +
     "don_cb_total_number             ,\n" +
     "don_cheque_number                \n" +
     "FROM tronc_queteur               \n" ;
@@ -129,10 +128,8 @@ public class ExportDataImpl implements ExportDataService
     "id                        ,\n" +
     "first_name                ,\n" +
     "last_name                 ,\n" +
-    "email                     ,\n" +
     "secteur                   ,\n" +
     "nivol                     ,\n" +
-    "mobile                    ,\n" +
     "created                   ,\n" +
     "updated                   ,\n" +
     "parent_authorization      ,\n" +

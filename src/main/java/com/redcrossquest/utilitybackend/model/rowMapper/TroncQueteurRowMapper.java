@@ -21,6 +21,7 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
   public NullDTO mapRow(ResultSet rs, int rowNum) throws SQLException
   {
     this.tableWriter.addValue(getValue(rs.getInt       ("id"                          ),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("ul_id"                       ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("queteur_id"                  ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("point_quete_id"              ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("tronc_id"                    ),ValueType.INT     ));
@@ -56,8 +57,6 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     this.tableWriter.addValue(getValue(rs.getBigDecimal("don_cheque"                  ),ValueType.DECIMAL ));
     this.tableWriter.addValue(getValue(rs.getString    ("coins_money_bag_id"          ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("bills_money_bag_id"          ),ValueType.STRING  ));
-    this.tableWriter.addValue(getValue(rs.getBigDecimal("don_cb_sans_contact_amount"  ),ValueType.DECIMAL ));
-    this.tableWriter.addValue(getValue(rs.getInt       ("don_cb_sans_contact_number"  ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("don_cb_total_number"         ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("don_cheque_number"           ),ValueType.INT     ));
 
@@ -73,6 +72,7 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     tableMetadataBuilder.addProperty(new MetadataProperty("SQLQuery", ValueType.STRING, ExportDataImpl.QUERY_FOR_GET_TRONC_QUETEUR));
 
     tableMetadataBuilder.addColumn(new ColumnMetadata("id"                          , ValueType.INT     ));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("ul_id"                       , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("queteur_id"                  , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("point_quete_id"              , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("tronc_id"                    , ValueType.INT     ));
@@ -108,8 +108,6 @@ public class TroncQueteurRowMapper extends RowMapperHelper implements RowMapper<
     tableMetadataBuilder.addColumn(new ColumnMetadata("don_cheque"                  , ValueType.DECIMAL ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("coins_money_bag_id"          , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("bills_money_bag_id"          , ValueType.STRING  ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("don_cb_sans_contact_amount"  , ValueType.DECIMAL ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("don_cb_sans_contact_number"  , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("don_cb_total_number"         , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("don_cheque_number"           , ValueType.INT     ));
 

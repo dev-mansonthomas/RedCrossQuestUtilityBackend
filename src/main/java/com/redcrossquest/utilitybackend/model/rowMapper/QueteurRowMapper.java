@@ -23,10 +23,8 @@ public class QueteurRowMapper extends RowMapperHelper implements RowMapper<NullD
     this.tableWriter.addValue(getValue(rs.getInt       ("id"                   ), ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getString    ("first_name"           ), ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("last_name"            ), ValueType.STRING  ));
-    this.tableWriter.addValue(getValue(rs.getString    ("email"                ), ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getInt       ("secteur"              ), ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getString    ("nivol"                ), ValueType.STRING  ));
-    this.tableWriter.addValue(getValue(rs.getString    ("mobile"               ), ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getTimestamp ("created"              ), ValueType.DATETIME));
     this.tableWriter.addValue(getValue(rs.getTimestamp ("updated"              ), ValueType.DATETIME));
     this.tableWriter.addValue(getValue(rs.getString    ("notes"                ), ValueType.STRING  ));
@@ -57,10 +55,8 @@ public class QueteurRowMapper extends RowMapperHelper implements RowMapper<NullD
     tableMetadataBuilder.addColumn(new ColumnMetadata("id"                   , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("first_name"           , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("last_name"            , ValueType.STRING  ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("email"                , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("secteur"              , ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("nivol"                , ValueType.STRING  ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("mobile"               , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("created"              , ValueType.DATETIME));
     tableMetadataBuilder.addColumn(new ColumnMetadata("updated"              , ValueType.DATETIME));
     tableMetadataBuilder.addColumn(new ColumnMetadata("notes"                , ValueType.STRING  ));

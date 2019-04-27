@@ -60,6 +60,7 @@ public class ULRowMapper extends RowMapperHelper implements RowMapper<NullDTO>
     tableMetadataBuilder.addColumn(new ColumnMetadata("email"                    , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("id_structure_rattachement", ValueType.INT     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("date_demarrage_activite"  , ValueType.DATETIME));
+    tableMetadataBuilder.addColumn(new ColumnMetadata("date_demarrage_rcq"       , ValueType.DATETIME));
     tableMetadataBuilder.addColumn(new ColumnMetadata("thanks_mail_benevole"     , ValueType.STRING  ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("thanks_mail_benevole1j"   , ValueType.STRING  ));
 
