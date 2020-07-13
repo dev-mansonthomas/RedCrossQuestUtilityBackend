@@ -32,10 +32,9 @@ public class ULRowMapper extends RowMapperHelper implements RowMapper<NullDTO>
     this.tableWriter.addValue(getValue(rs.getString    ("email"                     ),ValueType.STRING ));
     this.tableWriter.addValue(getValue(rs.getInt       ("id_structure_rattachement" ),ValueType.INT    ));
     this.tableWriter.addValue(getValue(rs.getTimestamp ("date_demarrage_activite"   ),ValueType.DATETIME));
+    this.tableWriter.addValue(getValue(rs.getTimestamp ("date_demarrage_rcq"        ),ValueType.DATETIME));
     this.tableWriter.addValue(getValue(rs.getString    ("thanks_mail_benevole"      ),ValueType.STRING ));
     this.tableWriter.addValue(getValue(rs.getString    ("thanks_mail_benevole1j"    ),ValueType.STRING ));
-
-
 
     return null;
   }
