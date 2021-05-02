@@ -250,11 +250,14 @@ public class ExportDataImpl implements ExportDataService
 
 
   public static final String QUERY_FOR_GET_DAILY_STATS_BEFORE_RCQ =
-    "SELECT    \n" +
-    "id       ,\n" +
-    "ul_id    ,\n" +
-    "date     ,\n" +
-    "amount    \n" +
+    "SELECT            \n" +
+    "id               ,\n" +
+    "ul_id            ,\n" +
+    "date             ,\n" +
+    "amount           ,\n" +
+    "nb_benevole      ,\n" +
+    "nb_benevole_1j   ,\n" +
+    "nb_heure          \n" +
     "FROM daily_stats_before_rcq \n" ;
 
   public void exportDailyStatsBeforeRCQ(final TableWriter tableWriter)
@@ -278,11 +281,8 @@ public class ExportDataImpl implements ExportDataService
     "last_name           ,\n" +
     "donation_date       ,\n" +
     "don_cheque          ,\n" +
-    "address             ,\n" +
     "postal_code         ,\n" +
     "city                ,\n" +
-    "phone               ,\n" +
-    "email               ,\n" +
     "euro500             ,\n" +
     "euro200             ,\n" +
     "euro100             ,\n" +
@@ -322,9 +322,6 @@ public class ExportDataImpl implements ExportDataService
                        types ,
                        new NamedDonationRowMapper(tableWriter));
   }
-
-
-
 
   public static final String QUERY_FOR_GET_QUETEUR_MAILING_STATUS=
       "SELECT `id`                    ,\n" +

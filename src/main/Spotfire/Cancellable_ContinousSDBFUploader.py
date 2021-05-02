@@ -3,6 +3,7 @@ from System.IO import StreamReader
 from System.Net import HttpWebRequest
 from Spotfire.Dxp.Framework.Library import LibraryManager, LibraryItemType, LibraryItemRetrievalOption
 from Spotfire.Dxp.Framework.ApplicationModel import ProgressService
+from Spotfire.Dxp.Framework.DocumentModel import ITransactions
 
 ps = Application.GetService[ProgressService]()
 

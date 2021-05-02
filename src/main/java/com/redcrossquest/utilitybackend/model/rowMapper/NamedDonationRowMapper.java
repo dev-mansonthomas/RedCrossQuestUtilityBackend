@@ -26,11 +26,8 @@ public class NamedDonationRowMapper extends RowMapperHelper implements RowMapper
     this.tableWriter.addValue(getValue(rs.getString    ("first_name"                  ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("last_name"                   ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getDate      ("donation_date"               ),ValueType.DATE    ));
-    this.tableWriter.addValue(getValue(rs.getString    ("address"                     ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("postal_code"                 ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getString    ("city"                        ),ValueType.STRING  ));
-    this.tableWriter.addValue(getValue(rs.getString    ("phone"                       ),ValueType.STRING  ));
-    this.tableWriter.addValue(getValue(rs.getString    ("email"                       ),ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getInt       ("euro500"                     ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("euro200"                     ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("euro100"                     ),ValueType.INT     ));
@@ -57,8 +54,6 @@ public class NamedDonationRowMapper extends RowMapperHelper implements RowMapper
     this.tableWriter.addValue(getValue(rs.getDate      ("last_update"                 ),ValueType.DATE    ));
     this.tableWriter.addValue(getValue(rs.getInt       ("last_update_user_id"         ),ValueType.INT     ));
 
-
-
     return null;
   }
 
@@ -76,11 +71,8 @@ public class NamedDonationRowMapper extends RowMapperHelper implements RowMapper
     tableMetadataBuilder.addColumn(new ColumnMetadata("first_name"                  , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("last_name"                   , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("donation_date"               , ValueType.DATE     ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("address"                     , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("postal_code"                 , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("city"                        , ValueType.STRING   ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("phone"                       , ValueType.STRING   ));
-    tableMetadataBuilder.addColumn(new ColumnMetadata("email"                       , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("euro500"                     , ValueType.INT      ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("euro200"                     , ValueType.INT      ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("euro100"                     , ValueType.INT      ));
@@ -106,7 +98,6 @@ public class NamedDonationRowMapper extends RowMapperHelper implements RowMapper
     tableMetadataBuilder.addColumn(new ColumnMetadata("bills_money_bag_id"          , ValueType.STRING   ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("last_update"                 , ValueType.DATE     ));
     tableMetadataBuilder.addColumn(new ColumnMetadata("last_update_user_id"         , ValueType.INT      ));
-
 
     return tableMetadataBuilder.build();
   }
