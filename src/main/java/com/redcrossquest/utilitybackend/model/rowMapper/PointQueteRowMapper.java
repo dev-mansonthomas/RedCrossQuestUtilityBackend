@@ -20,6 +20,7 @@ public class PointQueteRowMapper extends RowMapperHelper implements RowMapper<Nu
 
   public NullDTO mapRow(ResultSet rs, int rowNum) throws SQLException
   {
+    //System.out.println("rowNum="+rowNum);
     this.tableWriter.addValue(getValue(rs.getInt       ("id"                ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getInt       ("ul_id"             ),ValueType.INT     ));
     this.tableWriter.addValue(getValue(rs.getString    ("code"              ),ValueType.STRING  ));

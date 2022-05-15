@@ -14,4 +14,5 @@ public interface ExportDataService
   void exportDailyStatsBeforeRCQ  (final TableWriter tableWriter);
   void exportNamedDonation        (final TableWriter tableWriter);
   void exportQueteurMailingStatus (final TableWriter tableWriter);
+  void exportCreditCard           (final TableWriter tableWriter);
 }

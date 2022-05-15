@@ -67,6 +67,9 @@ public class SpotfireSBDFGenerator implements InitializingBean
   @Value("${utilitybackend.files.folder}/${utilitybackend.files.queteur_mailing_status}")
   private String queteurMailingStatusOutputFile;
 
+  @Value("${utilitybackend.files.folder}/${utilitybackend.files.credit_card}")
+  private String creditCardOutputFile;
+
 
 
 
@@ -485,6 +488,48 @@ public class SpotfireSBDFGenerator implements InitializingBean
     }
 
     buildResponse(startDate, "queteur_mailing_status", queteurMailingStatusOutputFile, response);
+    return response.toString();
+  }
+
+
+  @RequestMapping(value = "/credit_card", method = RequestMethod.GET, produces = "application/json")
+  public String generateCreditCard()
+  {
+    long         startDate    = System.currentTimeMillis();
+    StringBuffer response     = new StringBuffer();
+
+
+    OutputStream outputStream = null;
+    BinaryWriter writer       = null;
+    try
+    {
+      LOGGER.info("Starting exporting CreditCard SDBF File");
+      outputStream  = new FileOutputStream  (creditCardOutputFile);
+      writer        = new BinaryWriter      (outputStream);
+
+      FileHeader.writeCurrentVersion(writer);
+
+      TableMetadata tableMetadata = CreditCardRowMapper.generateTableMetadata(version);
+      tableMetadata.write(writer);
+
+      TableWriter tableWriter = new TableWriter(writer, tableMetadata);
+
+      this.exportDataService.exportCreditCard(tableWriter);
+
+      tableWriter.writeEndOfTable();
+      LOGGER.info("Finished exporting CreditCard SDBF File");
+    }
+    catch(Exception e)
+    {
+      LOGGER.error("Error while generating CreditCard SDBF File",  e);
+      startDate = buildErrorResponse(startDate, "credit_card", creditCardOutputFile, e, response);
+    }
+    finally
+    {
+      closeResources(outputStream, writer);
+    }
+
+    buildResponse(startDate, "credit_card", creditCardOutputFile, response);
     return response.toString();
   }
 

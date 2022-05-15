@@ -40,7 +40,7 @@ public class QueteurRowMapper extends RowMapperHelper implements RowMapper<NullD
     this.tableWriter.addValue(getValue(rs.getString    ("spotfire_access_token"), ValueType.STRING  ));
     this.tableWriter.addValue(getValue(rs.getInt       ("mailing_preference"   ), ValueType.INT     ));
 
-
+    //System.out.println("Queteur "+rowNum+" - "+getValue(rs.getInt       ("id"                   ), ValueType.INT     )+" - "+getValue(rs.getString    ("spotfire_access_token"), ValueType.STRING  ));
     return null;
   }
 

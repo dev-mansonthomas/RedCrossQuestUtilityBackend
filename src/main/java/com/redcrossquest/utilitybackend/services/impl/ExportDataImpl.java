@@ -345,4 +345,26 @@ public class ExportDataImpl implements ExportDataService
                        new QueteurMailingStatusRowMapper(tableWriter));
   }
 
+  public static final String QUERY_FOR_GET_CREDIT_CARD=
+          "SELECT `id`               ,\n" +
+          "       `tronc_queteur_id` ,\n" +
+          "       `ul_id`            ,\n" +
+          "       `quantity`         ,\n" +
+          "       `amount`            \n" +
+          "FROM   `credit_card`       \n" ;
+
+  public void exportCreditCard(final TableWriter tableWriter)
+  {
+    Object [] os    = {};
+    int    [] types = {};
+
+
+    jdbcTemplate.query(QUERY_FOR_GET_CREDIT_CARD,
+            os    ,
+            types ,
+            new QueteurMailingStatusRowMapper(tableWriter));
+  }
+
+
+
 }
