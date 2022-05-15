@@ -1,16 +1,17 @@
-import time
+import time, clr
 from System.IO import StreamReader
 from System.Net import HttpWebRequest
+#from System.Windows.Forms import SendKeys, Control, Keys
 from Spotfire.Dxp.Framework.Library import LibraryManager, LibraryItemType, LibraryItemRetrievalOption
 from Spotfire.Dxp.Framework.ApplicationModel import ProgressService
-from Spotfire.Dxp.Framework.DocumentModel import ITransactions
 
+#clr.AddReference("System.Windows.Forms")
 ps = Application.GetService[ProgressService]()
 
 # Spotfire Server path for upload : "/Users/4c73owwy_USER_ID_benrwd39sfz/Public/fr-rcq-test/"
 folder = Document.Properties["SpotfireServerFolder"]
 # "http://localhost:8090/sbdf-generator/1.0/"
-rcqBackendURI = Document.Properties["SDBFGeneratorURL"]
+rcqBackendURI = Document.Properties["SBDFGeneratorURL"]
 # Sleep time in seconds (decimal accepted)
 sleep_time = Document.Properties["SleepTime"]
 
@@ -18,6 +19,14 @@ ps.CurrentProgress.ExecuteSubtask("folder        =" + folder)
 ps.CurrentProgress.ExecuteSubtask("rcqBackendURI =" + rcqBackendURI)
 ps.CurrentProgress.ExecuteSubtask("sleep_time    =" + str(sleep_time))
 ps.CurrentProgress.ExecuteSubtask("Configuration Retrieved")
+
+
+# def perform_undo(nb_of_undo):
+#     j = 0
+#     while j < nb_of_undo:
+#         SendKeys.Send("^z")
+#         ps.CurrentProgress.CheckCancel()
+#         j += 1
 
 
 def upload_one_file(data_table):
@@ -32,7 +41,7 @@ def upload_one_file(data_table):
     ps.CurrentProgress.CheckCancel()
 
     ps.CurrentProgress.ExecuteSubtask(file_name + ": " + str(json_data))
-    ps.CurrentProgress.ExecuteSubtask(file_name + " - SDBF file re-generated")
+    ps.CurrentProgress.ExecuteSubtask(file_name + " - SBDF file re-generated")
     data_table.Refresh()
     ps.CurrentProgress.CheckCancel()
     ps.CurrentProgress.ExecuteSubtask(file_name + " - Analysis DataTable Refreshed")
@@ -68,12 +77,18 @@ def execute():
                 ps.CurrentProgress.CheckCancel()
                 table_name = one_table.Name
 
-                if table_name == "spotfire_access" \
-                        or table_name == "tronc_queteur" \
-                        or table_name == "queteur" \
-                        or table_name == "named_donation" \
-                        or i % 5 == 0:
+                if table_name == "spotfire_access"            \
+                        or ((                                 \
+                              table_name == "tronc_queteur"   \
+                           or table_name == "credit_card"     \
+                           or table_name == "queteur"         \
+                           or table_name == "named_donation") \
+                           and i % 3 == 0)                    \
+                        or i % 30 == 0:
                     upload_one_file(one_table)
+
+                #                     ps.CurrentProgress.ExecuteSubtask("Undoing Changes to preserve memory usage")
+                #                     perform_undo(1)
 
                 ps.CurrentProgress.CheckCancel()
 
@@ -95,4 +110,4 @@ def execute():
 
 
 # Launch the cancellable execution
-ps.ExecuteWithProgress("Continuous SDBF Uploader", "SDBF Upload in progress", execute)
+ps.ExecuteWithProgress("Continuous SBDF Uploader", "SBDF Upload in progress", execute)

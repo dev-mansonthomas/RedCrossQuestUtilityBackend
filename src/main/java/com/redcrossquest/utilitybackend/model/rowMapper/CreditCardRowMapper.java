@@ -20,11 +20,11 @@ public class CreditCardRowMapper extends RowMapperHelper implements RowMapper<Nu
 
   public NullDTO mapRow(ResultSet rs, int rowNum) throws SQLException
   {
-    this.tableWriter.addValue(getValue(rs.getInt       ("id"                ),ValueType.INT     ));
-    this.tableWriter.addValue(getValue(rs.getInt       ("tronc_queteur_id"  ),ValueType.INT     ));
-    this.tableWriter.addValue(getValue(rs.getInt       ("ul_id"             ),ValueType.INT     ));
-    this.tableWriter.addValue(getValue(rs.getString    ("quantity"          ),ValueType.INT     ));
-    this.tableWriter.addValue(getValue(rs.getInt       ("amount"            ),ValueType.DECIMAL ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("id"              ),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("tronc_queteur_id"),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("ul_id"           ),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getInt       ("quantity"        ),ValueType.INT     ));
+    this.tableWriter.addValue(getValue(rs.getBigDecimal("amount"          ),ValueType.DECIMAL ));
     return null;
   }
 

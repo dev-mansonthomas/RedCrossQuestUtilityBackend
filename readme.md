@@ -12,7 +12,7 @@ It won't fetch all data in memory and then dump it in the file.
 
 1. Checkout the sources, enable maven
 2. Download the [TIBCO Spotfire SBDF library](https://community.tibco.com/wiki/tibco-spotfirer-sbdf-library)
-3. Install sdbf.jar in your local maven repository
+3. Install sbdf.jar in your local maven repository
 
         mvn install:install-file -Dfile=sbdf.jar \
                                  -DgroupId=com.tibco.spotfire \

@@ -362,7 +362,7 @@ public class ExportDataImpl implements ExportDataService
     jdbcTemplate.query(QUERY_FOR_GET_CREDIT_CARD,
             os    ,
             types ,
-            new QueteurMailingStatusRowMapper(tableWriter));
+            new CreditCardRowMapper(tableWriter));
   }
 
 

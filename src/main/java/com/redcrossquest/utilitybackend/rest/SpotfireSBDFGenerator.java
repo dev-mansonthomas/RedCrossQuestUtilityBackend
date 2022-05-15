@@ -87,7 +87,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer = null;
     try
     {
-      LOGGER.info("Starting exporting spotfire_access SDBF File");
+      LOGGER.info("Starting exporting spotfire_access SBDF File");
       outputStream  = new FileOutputStream(spotfireAccessOutputFile);
       writer        = new BinaryWriter(outputStream);
 
@@ -101,11 +101,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportSpotfireAccess(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting spotfire_access SDBF File");
+      LOGGER.info("Finished exporting spotfire_access SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating spotfire_access SDBF File",  e);
+      LOGGER.error("Error while generating spotfire_access SBDF File",  e);
       startDate = buildErrorResponse(startDate, "spotfire_access", spotfireAccessOutputFile, e, response);
     }
     finally
@@ -130,7 +130,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting tronc SDBF File");
+      LOGGER.info("Starting exporting tronc SBDF File");
       outputStream  = new FileOutputStream(troncOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -144,11 +144,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportTronc(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting tronc SDBF File");
+      LOGGER.info("Finished exporting tronc SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating Tronc SDBF File",  e);
+      LOGGER.error("Error while generating Tronc SBDF File",  e);
       startDate = buildErrorResponse(startDate, "tronc", troncOutputFile, e, response);
     }
     finally
@@ -171,7 +171,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting queteur SDBF File");
+      LOGGER.info("Starting exporting queteur SBDF File");
       outputStream  = new FileOutputStream(queteurOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -185,11 +185,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportQueteur(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting queteur SDBF File");
+      LOGGER.info("Finished exporting queteur SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating Queteur SDBF File",  e);
+      LOGGER.error("Error while generating Queteur SBDF File",  e);
       startDate = buildErrorResponse(startDate, "queteur", queteurOutputFile, e, response);
     }
     finally
@@ -211,7 +211,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
 
     try
     {
-      LOGGER.info("Starting exporting point_quete SDBF File");
+      LOGGER.info("Starting exporting point_quete SBDF File");
       outputStream  = new FileOutputStream(pointQueteOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -225,11 +225,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportPointQuete(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting point_quete SDBF File");
+      LOGGER.info("Finished exporting point_quete SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating PointQuete SDBF File",  e);
+      LOGGER.error("Error while generating PointQuete SBDF File",  e);
       startDate = buildErrorResponse(startDate, "pointQuete", pointQueteOutputFile, e, response);
 
     }
@@ -251,7 +251,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
 
     try
     {
-      LOGGER.info("Starting exporting tronc_queteur SDBF File");
+      LOGGER.info("Starting exporting tronc_queteur SBDF File");
       outputStream  = new FileOutputStream(troncQueteurOutputFile);
       writer        = new BinaryWriter    (outputStream);
 
@@ -265,11 +265,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportTroncQueteur(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting tronc_queteur SDBF File");
+      LOGGER.info("Finished exporting tronc_queteur SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating troncQueteur SDBF File",  e);
+      LOGGER.error("Error while generating troncQueteur SBDF File",  e);
       startDate = buildErrorResponse(startDate, "troncQueteur", troncQueteurOutputFile, e, response);
 
     }
@@ -294,7 +294,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting named_donation SDBF File");
+      LOGGER.info("Starting exporting named_donation SBDF File");
       outputStream  = new FileOutputStream  (namedDonationOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -308,11 +308,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportNamedDonation(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting named_donation SDBF File");
+      LOGGER.info("Finished exporting named_donation SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating NamedDonation SDBF File",  e);
+      LOGGER.error("Error while generating NamedDonation SBDF File",  e);
       startDate = buildErrorResponse(startDate, "namedDonation", namedDonationOutputFile, e, response);
     }
     finally
@@ -335,7 +335,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting yearly_goal SDBF File");
+      LOGGER.info("Starting exporting yearly_goal SBDF File");
       outputStream  = new FileOutputStream  (yearlyGoalOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -349,11 +349,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportYearlyGoal(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting yearly_goal SDBF File");
+      LOGGER.info("Finished exporting yearly_goal SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating YearlyGoal SDBF File",  e);
+      LOGGER.error("Error while generating YearlyGoal SBDF File",  e);
       startDate = buildErrorResponse(startDate, "yearlyGoal", yearlyGoalOutputFile, e, response);
     }
     finally
@@ -377,7 +377,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting daily_stats_before_rcq SDBF File");
+      LOGGER.info("Starting exporting daily_stats_before_rcq SBDF File");
       outputStream  = new FileOutputStream  (dailyStatsBeforeRCQOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -391,11 +391,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportDailyStatsBeforeRCQ(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting daily_stats_before_rcq SDBF File");
+      LOGGER.info("Finished exporting daily_stats_before_rcq SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating dailyStatsBeforeRCQ SDBF File",  e);
+      LOGGER.error("Error while generating dailyStatsBeforeRCQ SBDF File",  e);
       startDate = buildErrorResponse(startDate, "dailyStatsBeforeRCQ", dailyStatsBeforeRCQOutputFile, e, response);
     }
     finally
@@ -419,7 +419,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting ul SDBF File");
+      LOGGER.info("Starting exporting ul SBDF File");
       outputStream  = new FileOutputStream  (ulOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -433,11 +433,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportUL(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting ul SDBF File");
+      LOGGER.info("Finished exporting ul SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating UL SDBF File",  e);
+      LOGGER.error("Error while generating UL SBDF File",  e);
       startDate = buildErrorResponse(startDate, "ul", ulOutputFile, e, response);
     }
     finally
@@ -461,7 +461,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting queteur_mailing_status SDBF File");
+      LOGGER.info("Starting exporting queteur_mailing_status SBDF File");
       outputStream  = new FileOutputStream  (queteurMailingStatusOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -475,11 +475,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportQueteurMailingStatus(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting queteur_mailing_status SDBF File");
+      LOGGER.info("Finished exporting queteur_mailing_status SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating queteur_mailing_status SDBF File",  e);
+      LOGGER.error("Error while generating queteur_mailing_status SBDF File",  e);
       startDate = buildErrorResponse(startDate, "queteur_mailing_status", queteurMailingStatusOutputFile, e, response);
     }
     finally
@@ -503,7 +503,7 @@ public class SpotfireSBDFGenerator implements InitializingBean
     BinaryWriter writer       = null;
     try
     {
-      LOGGER.info("Starting exporting CreditCard SDBF File");
+      LOGGER.info("Starting exporting CreditCard SBDF File");
       outputStream  = new FileOutputStream  (creditCardOutputFile);
       writer        = new BinaryWriter      (outputStream);
 
@@ -517,11 +517,11 @@ public class SpotfireSBDFGenerator implements InitializingBean
       this.exportDataService.exportCreditCard(tableWriter);
 
       tableWriter.writeEndOfTable();
-      LOGGER.info("Finished exporting CreditCard SDBF File");
+      LOGGER.info("Finished exporting CreditCard SBDF File");
     }
     catch(Exception e)
     {
-      LOGGER.error("Error while generating CreditCard SDBF File",  e);
+      LOGGER.error("Error while generating CreditCard SBDF File",  e);
       startDate = buildErrorResponse(startDate, "credit_card", creditCardOutputFile, e, response);
     }
     finally

@@ -11,7 +11,7 @@ ps = Application.GetService[ProgressService]()
 # Spotfire Server path for upload : "/Users/3c74owwyq2yp63mlspdhjaenrwb34sfa/Public/fr-rcq-test/"
 folder         = Document.Properties["SpotfireServerFolder"]
 # "http://localhost:8090/sbdf-generator/1.0/"
-rcqBackendURI  = Document.Properties["SDBFGeneratorURL"]
+rcqBackendURI  = Document.Properties["SBDFGeneratorURL"]
 # "C:/RedCrossQuest/SpotfireUpdate-test.html"
 outputFilePath = Document.Properties["outputFilePath"]
 lm    = Application.GetService(LibraryManager)
@@ -29,7 +29,7 @@ def uploadOneFile(dataTable):
   
   outputFile.Write( str(datetime.datetime.now())+" - " + fileName+" "+ str(jsonData)+"<br/>\n")
   
-  outputFile.Write( str(datetime.datetime.now())+" - " + fileName+" - SDBF file re-generated <br/>\n")
+  outputFile.Write( str(datetime.datetime.now())+" - " + fileName+" - SBDF file re-generated <br/>\n")
   dataTable.Refresh()
   ps.CurrentProgress.CheckCancel()
   outputFile.Write( str(datetime.datetime.now())+" - " + fileName+" - Analysis Refreshed <br/>\n")
@@ -59,7 +59,7 @@ def execute():
     table = Document.ActiveDataTableReference
 
     outputFile     = StreamWriter(outputFilePath,"w+")
-    outputFile.Write("<html><head><title>Spotfire SDBF Uploader</title></head><body><script>setTimeout(function(){window.location.reload(true);}, 5000);</script><div style='font-size:16px;padding:12px;'>\n")
+    outputFile.Write("<html><head><title>Spotfire SBDF Uploader</title></head><body><script>setTimeout(function(){window.location.reload(true);}, 5000);</script><div style='font-size:16px;padding:12px;'>\n")
     outputFile.Write("<p>Export Folder is '"+folder+"'</p>\n")
     outputFile.Close()
     
@@ -91,4 +91,4 @@ def execute():
     pass
 
 #Launch the cancellable execution     
-ps.ExecuteWithProgress("Continuous SDBF Uploader", "SDBF Upload in progress", execute) 
+ps.ExecuteWithProgress("Continuous SBDF Uploader", "SBDF Upload in progress", execute) 
